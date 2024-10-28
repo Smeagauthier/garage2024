@@ -1,3 +1,140 @@
+@import "bootstrap";
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+}
+
 body {
-    background-color: skyblue;
+    background-color: whitesmoke;
+}
+
+.italic-title {
+    font-style: italic;
+}
+
+/* ---------------- HEADER ---------------- */
+header {
+    background: linear-gradient(to right, black, #106976, black);
+    padding: 5rem 0; /* Ajuste le padding vertical du header */
+}
+
+header .container {
+    position: relative; /* Pour permettre le positionnement absolu des éléments internes */
+}
+
+header h1 {
+    margin-top: 40px; /* Ajustez cette valeur si nécessaire */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ajout d'une ombre au texte */
+    color: white; /* Couleur du texte du titre */
+    text-align: center; /* Centrer le titre */
+    font-weight: bold; /* Mettre le titre en gras */
+}
+
+header p.lead {
+    font-style: italic;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+header .btn {
+    position: absolute;
+    top: 130px; /* Ajustez selon vos besoins */
+    left: 50px; /* Ajustez selon vos besoins */
+}
+
+/* ---------------- CARTES ---------------- */
+.card {
+    background-color: #f8f9fa; /* Fond clair */
+    border-radius: 15px; 
+    box-shadow: 8px 8px 15px #a3a3a3, -8px -8px 15px #000000; 
+    transition: all 0.3s ease; 
+    width: 100%;
+    max-width: 1000px;
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2); 
+    transform: translateY(-5px); 
+}
+
+.card-img-left {
+    width: 350px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px 0 0 15px;
+    object-position: center center;
+}
+
+.card-title {
+    color: #333;
+    font-weight: 700; /* Titre en gras */
+    text-transform: uppercase; /* Titre en majuscules */
+}
+
+.card-text {
+    color: #666; /* Couleur du texte des cartes */
+    margin-bottom: 5px;
+}
+
+.card-text:nth-of-type(3) {
+    color: black;
+    font-weight: 700;
+}
+
+/* ---------------- LIGNES ---------------- */
+.line {
+    width: 85%;
+    height: 1px;
+    background-color: #ccc;
+    margin: 5px auto;
+}
+
+/* ---------------- BOUTONS ---------------- */
+.btn-info {
+    background-color: #17a2b8; /* Couleur des boutons */
+    border-color: #17a2b8;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-info:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+}
+
+/* ---------------- MENU ---------------- */
+.custom-navbar {
+    padding: 5px 0; /* Réduit le padding vertical */
+    height: 100px; /* Ajuste la hauteur */
+}
+
+.non-clickable {
+    cursor: not-allowed; /* Change le curseur pour indiquer que l'élément n'est pas interactif */
+    pointer-events: none; /* Empêche tout événement de clic */
+}
+
+/* Supprime l'ombre de focus sur les inputs */
+.non-clickable:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+/* ---------------- IMAGE RESPONSIVE ---------------- */
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ---------------- FOOTER ---------------- */
+footer {
+    background-color: #1E1E1E; /* Fond du footer */
 }

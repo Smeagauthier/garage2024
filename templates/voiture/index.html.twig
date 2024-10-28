@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Garage - Showroom{% endblock %}
+
+{% block body %}
+    <header class="py-3 text-white text-center d-flex align-items-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Vente de Véhicules</h1>
+            <p class="lead">Découvrez notre sélection de véhicules en stock.</p>
+        </div>
+    </header>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                {% for voiture in voitures %}
+                    <div class="col-md-6 d-flex justify-content-center mb-4">
+                        <div class="card shadow-sm d-flex flex-row">
+                            <img src="{{ asset('uploads/' ~ voiture.image) }}" class="card-img-left" alt="{{ voiture.marque }} {{ voiture.modele }}">
+                            <div class="card-body d-flex flex-column justify-content-between text-center">
+                                <h5 class="card-title text-uppercase">{{ voiture.marque }} {{ voiture.modele }}</h5>
+                                <p class="card-text">{{ voiture.km }} km</p>
+                                <div class="line"></div>
+                                <p class="card-text">{{ voiture.nbProprietaire }} propriétaires précédents</p>
+                                <div class="line"></div>
+                                <p class="card-text">{{ voiture.prix }} €</p>
+                                <div class="text-center mt-3">
+                                    <a href="{{ path('voiture_show', { id: voiture.id }) }}" class="btn btn-info text-white fw-bold">Voir Détails</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

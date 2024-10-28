@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de {{ voiture.marque }} {{ voiture.modele }}{% endblock %}
+
+{% block body %}
+    <header class="py-5 text-white">
+        <div class="container">
+            <a href="{{ path('voitures') }}" class="btn btn-light btn-sm position-absolute fw-bold">
+                <i class="fas fa-arrow-left"></i> Retour
+            </a>
+            <h1 class="display-4 text-center fw-bold">{{ voiture.marque }} {{ voiture.modele }}</h1>
+        </div>
+    </header>
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="{{ asset('uploads/' ~ voiture.image) }}" class="img-fluid rounded-3 shadow-sm" alt="{{ voiture.marque }} {{ voiture.modele }}">
+                </div>
+                <div class="col-md-6 bg-light p-4 shadow-sm rounded-3">
+                    <h2 class="text-uppercase mb-4">Fiche technique</h2>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6" title="Nombre de kilomètres voiture">
+                            <label class="input-group">
+                                <span class="input-group-text"><i class="fas fa-tachometer-alt"></i></span>
+                                <input type="text" class="form-control non-clickable" value="{{ voiture.km }} km" readonly>
+                            </label>
+                        </div>
+                        <div class="col-md-6" title="Prix de la voiture">
+                            <label class="input-group">
+                                <span class="input-group-text"><i class="fas fa-euro-sign"></i></span>
+                                <input type="text" class="form-control non-clickable" value="{{ voiture.prix }} €" readonly >
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6" title="Nombre de propriétaire de la voiture">
+                            <label class="input-group">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <input type="text" class="form-control non-clickable" value="{{ voiture.nbProprietaire }} propriétaires précédents" readonly >
+                            </label>
+                        </div>
+                        <div class="col-md-6" title="Cylindre de la voiture">
+                            <label class="input-group">
+                                <span class="input-group-text"><i class="fa-solid fa-gear"></i></span>
+                                <input type="text" class="form-control non-clickable" value="{{ voiture.cylindree }} cm³" readonly>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6" title="Puissance de la voiture">
+                            <label class="input-group">
+                                <span class="input-group-text"><i class="fas fa-bolt"></i></span>
+                                <input type="text" class="form-control non-clickable" value="{{ voiture.puissance }} ch" readonly>
+                            </label>
+                        </div>
+                        <div class="col-md-6" title="Carburant de la voiture">
+                            <label class="input-group">
+                                <span class="input-group-text"><i class="fas fa-gas-pump"></i></span>
+                                <input type="text" class="form-control non-clickable" value="{{ voiture.carburant }}" readonly>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6" title="Année de construction de la voiture">
+                            <label class="input-group">
+                                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                <input type="text" class="form-control non-clickable" value="{{ voiture.annee }}" readonly>
+                            </label>
+                        </div>
+                        <div class="col-md-6" title="Transmission de la voiture">
+                            <label class="input-group">
+                                <span class="input-group-text"><i class="fa-solid fa-car"></i></span>
+                                <input type="text" class="form-control non-clickable" value="{{ voiture.transmission }}" readonly>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-12" title="Description détaillée de la voiture">
+                            <label class="input-group">
+                                <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
+                                <textarea class="form-control non-clickable" rows="3" readonly resize="none">{{ voiture.description }}</textarea>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" title="Autres options de la voiture">
+                            <label class="input-group">
+                                <span class="input-group-text"><i class="fa-solid fa-circle-info"></i></span>
+                                <textarea class="form-control non-clickable" rows="3" readonly resize="none">{{ voiture.autresOptions }}</textarea>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

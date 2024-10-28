@@ -1,6 +1,6 @@
-import './styles/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle';
+// import './styles/bootstrap.min.css';
 // import './bootstrap.js';
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle';
 /*
  * Welcome to your app's main JavaScript file!
  *
