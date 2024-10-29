@@ -18,7 +18,7 @@ class AppFixtures extends Fixture
             $voiture = new Voiture();
             $voiture->setMarque($faker->company());
             $voiture->setModele($faker->word());
-            $voiture->setImage($faker->imageUrl(640, 480, 'cars'));
+            $voiture->setCoverImage($faker->imageUrl(640, 480, 'cars'));
             $voiture->setKm($faker->numberBetween(0, 200000));
             $voiture->setPrix($faker->numberBetween(1000, 50000));
             $voiture->setNbProprietaire($faker->numberBetween(1, 5)); 

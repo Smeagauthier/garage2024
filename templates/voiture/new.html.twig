@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+{% block title %}Annonces: Création{% endblock %}
+
+{% form_theme myForm 'voiture/_collection.html.twig' %}
+
+
+{% block body %}
+<div class="container">
+    <h1>Création d'une annonce</h1>
+    {{ form_start(myForm) }}
+
+        {{ form_widget(myForm) }}
+        <button type="submit" class="btn btn-primary mt-3">Création d'une annonce</button>
+
+
+    {{ form_end(myForm) }}
+
+
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{encore_entry_script_tags('voiture')}}
+{% endblock %}

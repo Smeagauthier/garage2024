@@ -2,10 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\ImageRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ImageRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
 class Image
@@ -16,21 +15,16 @@ class Image
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Url()]
     private ?string $url = null;
 
-    /**
-     * @var Collection<int, Voiture>
-     */
-    #[ORM\OneToMany(targetEntity: Voiture::class, mappedBy: 'imagesID')]
-    private Collection $voiture_image;
-
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min:10, max:255, minMessage:"Le titre doit faire plus de 10 caractères", maxMessage:"Le titre ne doit pas faire plus de 255 caractères")]
     private ?string $caption = null;
 
-    public function __construct()
-    {
-        $this->voiture_image = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'images')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Voiture $voiture = null;
 
     public function getId(): ?int
     {
@@ -49,36 +43,6 @@ class Image
         return $this;
     }
 
-    /**
-     * @return Collection<int, Voiture>
-     */
-    public function getVoitureImage(): Collection
-    {
-        return $this->voiture_image;
-    }
-
-    public function addVoitureImage(Voiture $voitureImage): static
-    {
-        if (!$this->voiture_image->contains($voitureImage)) {
-            $this->voiture_image->add($voitureImage);
-            $voitureImage->setImagesID($this);
-        }
-
-        return $this;
-    }
-
-    public function removeVoitureImage(Voiture $voitureImage): static
-    {
-        if ($this->voiture_image->removeElement($voitureImage)) {
-            // set the owning side to null (unless already changed)
-            if ($voitureImage->getImagesID() === $this) {
-                $voitureImage->setImagesID(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getCaption(): ?string
     {
         return $this->caption;
@@ -87,6 +51,18 @@ class Image
     public function setCaption(string $caption): static
     {
         $this->caption = $caption;
+
+        return $this;
+    }
+
+    public function getVoiture(): ?Voiture
+    {
+        return $this->voiture;
+    }
+
+    public function setVoiture(?Voiture $voiture): static
+    {
+        $this->voiture = $voiture;
 
         return $this;
     }
