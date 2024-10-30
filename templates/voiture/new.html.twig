@@ -1,25 +1,128 @@
 {% extends "base.html.twig" %}
-{% block title %}Annonces: Création{% endblock %}
-
-{% form_theme myForm 'voiture/_collection.html.twig' %}
-
+{% block title %}Ajout d'un nouveau véhicule{% endblock %}
 
 {% block body %}
+
+<header class="py-4 text-white text-center d-flex align-items-center mb-3">
+    <div class="container">
+        <h1 class="display-4 fw-bold pb-4">Ajout d'un nouveau véhicule</h1>
+    </div>
+</header>
+
 <div class="container">
-    <h1>Création d'une annonce</h1>
+
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+
     {{ form_start(myForm) }}
 
-        {{ form_widget(myForm) }}
-        <button type="submit" class="btn btn-primary mt-3">Création d'une annonce</button>
 
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label class="input-group">
+                <span class="input-group-text"><i class="fas fa-car"></i></span>
+                {{ form_widget(myForm.marque, {'attr': {'class': 'form-control', 'placeholder': 'Marque'}}) }}
+            </label>
+        </div>
+        <div class="col-md-6">
+            <label class="input-group">
+                <span class="input-group-text"><i class="fas fa-car-side"></i></span>
+                {{ form_widget(myForm.modele, {'attr': {'class': 'form-control', 'placeholder': 'Modèle'}}) }}
+            </label>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label class="input-group">
+                <span class="input-group-text"><i class="fas fa-tachometer-alt"></i></span>
+                {{ form_widget(myForm.km, {'attr': {'class': 'form-control', 'placeholder': 'Kilométrage'}}) }}
+            </label>
+        </div>
+        <div class="col-md-6">
+            <label class="input-group">
+                <span class="input-group-text"><i class="fas fa-euro-sign"></i></span>
+                {{ form_widget(myForm.prix, {'attr': {'class': 'form-control', 'placeholder': 'Prix'}}) }}
+            </label>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label class="input-group">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                {{ form_widget(myForm.nbProprietaire, {'attr': {'class': 'form-control', 'placeholder': 'Nombre de propriétaires'}}) }}
+            </label>
+        </div>
+        <div class="col-md-6">
+            <label class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-gear"></i></span>
+                {{ form_widget(myForm.cylindree, {'attr': {'class': 'form-control', 'placeholder': 'Cylindrée'}}) }}
+            </label>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label class="input-group">
+                <span class="input-group-text"><i class="fas fa-bolt"></i></span>
+                {{ form_widget(myForm.puissance, {'attr': {'class': 'form-control', 'placeholder': 'Puissance'}}) }}
+            </label>
+        </div>
+        <div class="col-md-6">
+            <label class="input-group">
+                <span class="input-group-text"><i class="fas fa-gas-pump"></i></span>
+                {{ form_widget(myForm.carburant, {'attr': {'class': 'form-control', 'placeholder': 'Carburant'}}) }}
+            </label>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <label class="input-group">
+                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                {{ form_widget(myForm.annee, {'attr': {'class': 'form-control', 'placeholder': 'Année'}}) }}
+            </label>
+        </div>
+        <div class="col-md-6">
+            <label class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-cogs"></i></span>
+                {{ form_widget(myForm.transmission, {'attr': {'class': 'form-control', 'placeholder': 'Transmission'}}) }}
+            </label>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <label class="input-group">
+                <span class="input-group-text"><i class="fas fa-image"></i></span>
+                {{ form_widget(myForm.coverImage, {'attr': {'class': 'form-control', 'placeholder': 'Téléchargez l\'image de couverture'}}) }}
+            </label>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <label class="input-group">
+                <span class="input-group-text"><i class="fas fa-info-circle"></i></span>
+                {{ form_widget(myForm.description, {'attr': {'class': 'form-control', 'rows': '3', 'placeholder': 'Description'}}) }}
+            </label>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <label class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-tools"></i></span>
+                {{ form_widget(myForm.autresOptions, {'attr': {'class': 'form-control', 'rows': '3', 'placeholder': 'Autres options'}}) }}
+            </label>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Créer une annonce</button>
 
     {{ form_end(myForm) }}
 
-
 </div>
-
-{% endblock %}
-
-{% block javascripts %}
-    {{encore_entry_script_tags('voiture')}}
 {% endblock %}

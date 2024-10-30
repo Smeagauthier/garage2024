@@ -25,15 +25,17 @@ class VoitureType extends ApplicationType
         $builder
             ->add('marque', TextType::class, $this->getConfiguration("Marque", "Entrez la marque de la voiture"))
             ->add('modele', TextType::class, $this->getConfiguration("Modèle", "Entrez le modèle de la voiture"))
-            ->add('images',CollectionType::class,[
-                'entry_type' => ImageType::class,
-                'allow_add' => true, // permet d'ajouter des éléments et surtout avoir data_prototype
-                'allow_delete' => true
+            ->add('coverImage', FileType::class, [
+                'label' => "Image de couverture (fichier JPG ou PNG)",
+                'required' => false, // Si le fichier n'est pas obligatoire lors de la modification
+                'mapped' => true, // Indique que ce champ correspond à une propriété de l'entité
+                'data_class' => null, // Permet de gérer un fichier sans être lié à un objet File
             ])
-            ->add('coverImage', UrlType::class,$this->getConfiguration("Url de l'image", "Donnez l'adresse de votre image"))
             ->add('km', IntegerType::class, $this->getConfiguration("Kilométrage", "Entrez le kilométrage"))
-            ->add('prix', MoneyType::class, $this->getConfiguration("Prix", "Entrez le prix"))
-            ->add('nbProprietaire', TextType::class, $this->getConfiguration("Nombre de propriétaires", "Entrez le nombre de propriétaires"))
+            ->add('prix', MoneyType::class, [
+                'currency' => false, // Désactiver le préfixe de la devise
+            ]) 
+           ->add('nbProprietaire', TextType::class, $this->getConfiguration("Nombre de propriétaires", "Entrez le nombre de propriétaires"))
             ->add('cylindree', IntegerType::class, $this->getConfiguration("Cylindrée", "Indiquez la cylindrée"))
             ->add('puissance', IntegerType::class, $this->getConfiguration("Puissance", "Entrez la puissance"))
             ->add('carburant', ChoiceType::class, [
@@ -58,6 +60,11 @@ class VoitureType extends ApplicationType
             ])
             ->add('description', TextareaType::class, $this->getConfiguration("Description", "Donnez une description"))
             ->add('autresOptions', TextareaType::class, $this->getConfiguration("Autres options", "Ajoutez des options supplémentaires"))
+            ->add('images',CollectionType::class,[
+                'entry_type' => ImageType::class,
+                'allow_add' => true, // permet d'ajouter des éléments et surtout avoir data_prototype
+                'allow_delete' => true
+            ])
         ;
     }
 

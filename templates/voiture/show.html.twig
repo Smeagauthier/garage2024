@@ -5,18 +5,41 @@
 {% block body %}
     <header class="py-5 text-white">
         <div class="container">
-            <a href="{{ path('voitures') }}" class="btn btn-light btn-sm position-absolute fw-bold">
-                <i class="fas fa-arrow-left"></i> Retour
+            <a href="{{ path('voitures') }}" class="btn btn-danger btn-sm position-absolute fw-bold">
+                <i class="fas fa-chevron-left"></i> Retour
             </a>
             <h1 class="display-4 text-center fw-bold">{{ voiture.marque }} {{ voiture.modele }}</h1>
         </div>
     </header>
-
+    
     <section class="py-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="{{ asset('uploads/' ~ voiture.coverImage) }}" class="img-fluid rounded-3 shadow-sm" alt="{{ voiture.marque }} {{ voiture.modele }}">
+                    <img src="{{ asset('uploads/' ~ voiture.coverImage) }}" class="img-fluid rounded-3 shadow-sm" alt="{{ voiture.marque }} {{ voiture.modele }}" style="width: 100%; height: 350px;">
+                    
+                    <!-- Carrousel d'images -->
+                    <div id="carrouselImages" class="carousel slide mt-4" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="https://picsum.photos/id/237/200/100" class="d-block w-100 rounded-3" alt="Image 1">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://picsum.photos/id/238/200/100" class="d-block w-100 rounded-3" alt="Image 2">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://picsum.photos/id/239/200/100" class="d-block w-100 rounded-3" alt="Image 3">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carrouselImages" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Précédent</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carrouselImages" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Suivant</span>
+                        </button>
+                    </div>
                 </div>
                 <div class="col-md-6 bg-light p-4 shadow-sm rounded-3">
                     <h2 class="text-uppercase mb-4">Fiche technique</h2>

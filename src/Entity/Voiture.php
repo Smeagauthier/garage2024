@@ -23,7 +23,6 @@ class Voiture
     private ?string $modele = null;
     
     #[ORM\Column(length: 255)]
-    #[Assert\Url()]
     private ?string $coverImage = null;
     
     #[ORM\Column]

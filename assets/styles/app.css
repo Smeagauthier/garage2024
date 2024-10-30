@@ -138,3 +138,8 @@ header .btn {
 footer {
     background-color: #1E1E1E; /* Fond du footer */
 }
+
+
+.test-image {
+    mix-blend-mode: darken;
+}
