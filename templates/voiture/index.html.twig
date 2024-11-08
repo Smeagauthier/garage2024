@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Garage - Showroom{% endblock %}
+{% block title %}Garage | Showroom{% endblock %}
 
 {% block body %}
     <header class="py-3 text-white text-center d-flex align-items-center">
@@ -25,7 +25,7 @@
                                 <div class="line"></div>
                                 <p class="card-text">{{ voiture.prix }} €</p>
                                 <div class="text-center mt-3">
-                                    <a href="{{ path('voiture_show', { id: voiture.id }) }}" class="btn btn-info text-white fw-bold">Voir Détails</a>
+                                    <a href="{{ path('voiture_show', { id: voiture.id }) }}" class="btn btn-info text-white fw-bold" title="Aller sur l'annonce de {{voiture.marque}} {{voiture.modele}}">Voir Détails</a>
                                 </div>
                             </div>
                         </div>

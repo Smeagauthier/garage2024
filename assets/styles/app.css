@@ -15,26 +15,23 @@ body {
     background-color: whitesmoke;
 }
 
-.italic-title {
-    font-style: italic;
-}
 
 /* ---------------- HEADER ---------------- */
 header {
     background: linear-gradient(to right, black, #106976, black);
-    padding: 5rem 0; /* Ajuste le padding vertical du header */
+    padding: 5rem 0; 
 }
 
 header .container {
-    position: relative; /* Pour permettre le positionnement absolu des éléments internes */
+    position: relative; 
 }
 
 header h1 {
-    margin-top: 40px; /* Ajustez cette valeur si nécessaire */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ajout d'une ombre au texte */
-    color: white; /* Couleur du texte du titre */
-    text-align: center; /* Centrer le titre */
-    font-weight: bold; /* Mettre le titre en gras */
+    margin-top: 40px; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center; 
+    font-weight: bold; 
 }
 
 header p.lead {
@@ -44,13 +41,18 @@ header p.lead {
 
 header .btn {
     position: absolute;
-    top: 130px; /* Ajustez selon vos besoins */
-    left: 50px; /* Ajustez selon vos besoins */
+    top: 130px; 
+    left: 50px; 
 }
+
+.italic-title {
+    font-style: italic;
+}
+
 
 /* ---------------- CARTES ---------------- */
 .card {
-    background-color: #f8f9fa; /* Fond clair */
+    background-color: #f8f9fa; 
     border-radius: 15px; 
     box-shadow: 8px 8px 15px #a3a3a3, -8px -8px 15px #000000; 
     transition: all 0.3s ease; 
@@ -59,6 +61,7 @@ header .btn {
     height: 250px;
     position: relative;
     overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
@@ -74,14 +77,8 @@ header .btn {
     object-position: center center;
 }
 
-.card-title {
-    color: #333;
-    font-weight: 700; /* Titre en gras */
-    text-transform: uppercase; /* Titre en majuscules */
-}
-
 .card-text {
-    color: #666; /* Couleur du texte des cartes */
+    color: #666; 
     margin-bottom: 5px;
 }
 
@@ -90,7 +87,15 @@ header .btn {
     font-weight: 700;
 }
 
-/* ---------------- LIGNES ---------------- */
+.card-title {
+    font-size: 1.25rem;
+    color: #106976;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+
+/* ---------------- SHOWROOM SEPARATIONS ---------------- */
 .line {
     width: 85%;
     height: 1px;
@@ -100,7 +105,7 @@ header .btn {
 
 /* ---------------- BOUTONS ---------------- */
 .btn-info {
-    background-color: #17a2b8; /* Couleur des boutons */
+    background-color: #17a2b8;
     border-color: #17a2b8;
     color: white;
     font-weight: bold;
@@ -112,34 +117,100 @@ header .btn {
 }
 
 /* ---------------- MENU ---------------- */
+
 .custom-navbar {
-    padding: 5px 0; /* Réduit le padding vertical */
-    height: 100px; /* Ajuste la hauteur */
+    padding: 5px 0; 
+    height: 100px; 
 }
+
+/* ---------------- FICHE TECHNIQUE D'UNE VOITURE  ---------------- */
 
 .non-clickable {
     cursor: not-allowed; /* Change le curseur pour indiquer que l'élément n'est pas interactif */
     pointer-events: none; /* Empêche tout événement de clic */
 }
 
-/* Supprime l'ombre de focus sur les inputs */
 .non-clickable:focus {
     box-shadow: none;
     outline: none;
 }
 
 /* ---------------- IMAGE RESPONSIVE ---------------- */
+
 .img-fluid {
     max-width: 100%;
     height: auto;
 }
 
 /* ---------------- FOOTER ---------------- */
+
 footer {
-    background-color: #1E1E1E; /* Fond du footer */
+    background-color: #1E1E1E; 
+}
+
+/* ---------------- CARROUSSEL ---------------- */
+
+#carrouselImages {
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.2); 
+    border-radius: 10px;
+    
+}
+
+#carrouselImages img {
+    max-height: 350px;
+    object-fit: cover; 
+    border-radius: 10px;
+    
+}
+
+.carousel-caption {
+    width: fit-content; 
+    bottom: 5px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    background: rgba(0, 0, 0, 0.5); 
+    padding: 10px 30px; 
+    border-radius: 5px; 
+}
+
+.carousel-caption h5 {
+    font-weight: bold;
+}
+
+.carousel-caption p {
+    font-style: italic;
 }
 
 
-.test-image {
-    mix-blend-mode: darken;
+/* ---------------- FORMULAIRE ---------------- */
+.labelInfo, .iconeHome{
+    color:#106976; 
+}
+
+.bt-creer{
+    width:100%;
+}
+
+.required{
+    display: none;
+}
+
+.section-heading {
+    font-size: 2.5rem;
+}
+
+.section-light {
+    background-color: #f8f9fa;
+}
+
+.lienMaps{
+    text-decoration: none;
+    color: #1d90a2;
+    font-weight: 600;
+}
+
+.imageGarage{
+    width: 60%;
+    height: 60%;
+    object-fit: cover;
 }

@@ -1,5 +1,5 @@
 {% extends "base.html.twig" %}
-{% block title %}Ajout | Nouveau véhicule {% endblock %}
+{% block title %}Modification | {{voiture.marque}} {{voiture.modele}}{% endblock %}
 
 {% form_theme myForm 'voiture/_collection.html.twig' %}
 
@@ -7,7 +7,7 @@
 
 <header class="py-4 text-white text-center d-flex align-items-center mb-3">
     <div class="container">
-        <h1 class="display-4 fw-bold pb-4">Ajout d'un nouveau véhicule</h1>
+        <h1 class="display-4 fw-bold pb-4">Modification de {{voiture.marque}} {{voiture.modele}}</h1>
     </div>
 </header>
 
@@ -41,14 +41,14 @@
             <label for="km" class="form-label fw-bold labelInfo">Kilométrage</label>
             <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-tachometer-alt"></i></span>
-                {{ form_widget(myForm.km, {'attr': {'class': 'form-control', 'placeholder': 'Kilométrage'}}) }}
+                {{ form_widget(myForm.km, {'attr': {'class': 'form-control', 'placeholder': 'Kilométrage', 'min': 0}}) }}
             </div>
         </div>
         <div class="col-md-6">
             <label for="prix" class="form-label fw-bold labelInfo">Prix</label>
             <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-euro-sign"></i></span>
-                {{ form_widget(myForm.prix, {'attr': {'class': 'form-control', 'placeholder': 'Prix'}}) }}
+                {{ form_widget(myForm.prix, {'attr': {'class': 'form-control', 'placeholder': 'Prix', 'min': 0}}) }}
             </div>
         </div>
     </div>
@@ -58,14 +58,14 @@
             <label for="nbProprietaire" class="form-label fw-bold labelInfo">Nombre de propriétaires</label>
             <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                {{ form_widget(myForm.nbProprietaire, {'attr': {'class': 'form-control', 'placeholder': 'Nombre de propriétaires'}}) }}
+                {{ form_widget(myForm.nbProprietaire, {'attr': {'class': 'form-control', 'placeholder': 'Nombre de propriétaires', 'min': 0}}) }}
             </div>
         </div>
         <div class="col-md-6">
             <label for="cylindree" class="form-label fw-bold labelInfo">Nombre de cylindres</label>
             <div class="input-group">
                 <span class="input-group-text"><i class="fa-solid fa-gear"></i></span>
-                {{ form_widget(myForm.cylindree, {'attr': {'class': 'form-control', 'placeholder': 'Cylindrée'}}) }}
+                {{ form_widget(myForm.cylindree, {'attr': {'class': 'form-control', 'placeholder': 'Cylindrée', 'min': 0}}) }}
             </div>
         </div>
     </div>
@@ -75,7 +75,7 @@
             <label for="puissance" class="form-label fw-bold labelInfo">Puissance</label>
             <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-bolt"></i></span>
-                {{ form_widget(myForm.puissance, {'attr': {'class': 'form-control', 'placeholder': 'Puissance'}}) }}
+                {{ form_widget(myForm.puissance, {'attr': {'class': 'form-control', 'placeholder': 'Puissance', 'min': 0}}) }}
             </div>
         </div>
         <div class="col-md-6">
@@ -92,7 +92,7 @@
             <label for="annee" class="form-label fw-bold labelInfo">Année de mise en circulation</label>
             <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                {{ form_widget(myForm.annee, {'attr': {'class': 'form-control', 'placeholder': 'Année'}}) }}
+                {{ form_widget(myForm.annee, {'attr': {'class': 'form-control', 'placeholder': 'Année', 'min': 1950, 'max': 'now'|date('Y')}}) }}
             </div>
         </div>
         <div class="col-md-6">
@@ -134,8 +134,8 @@
         </div>
     </div>
 
-    <button type="submit" class="btn btn-success mt-3 btn-lg btn-block shadow-lg rounded-pill bt-creer" title="Créer une annonce">
-        <i class="fas fa-check-circle"></i> Créer une annonce
+    <button type="submit" class="btn btn-warning mt-3 btn-lg btn-block shadow-lg rounded-pill bt-creer fw-bold" title="Modifier l'annonce">
+        <i class="fas fa-pen-to-square"></i> Modifier l'annonce
     </button>
 
     {{ form_end(myForm) }}

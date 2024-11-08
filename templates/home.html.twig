@@ -1,89 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Garage - Accueil{% endblock %}
+{% block title %}Garage | Accueil{% endblock %}
 
 {% block body %}
-    <header class="py-3 bg-dark text-white">
-        <div class="container text-center">
-            <h1 class="display-4 italic-title fw-bold">Piazza Officina</h1>
-            <p class="lead">Votre garage de confiance pour l'achat et la réparation de véhicules.</p>
+    <header class="py-3 text-white text-center d-flex align-items-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Garage Durieux</h1>
+            <p class="lead">Votre garage de confiance pour l'achat et la réparation de votre véhicule.</p>
         </div>
     </header>
 
-   <section class="py-5">
-    <div class="container">
-        <div class="position-relative mb-4">
-            <h2 class="text-start position-absolute top-0 start-0 translate-middle-y bg-light px-4 ms-5" style="font-size: 2rem; font-weight: bold;">Informations pratiques</h2>
-            <fieldset class="border rounded p-4 mt-4 shadow-sm" style="background: #fff;">
-                <div class="row">
-                    <!-- Colonne gauche pour l'adresse et le téléphone -->
-                    <div class="col-md-6 d-flex flex-column align-items-center">
-                        <div class="text-center mb-4">
-                            <i class="fas fa-map-marker-alt me-2" style="font-size: 1.8rem; color: #007BFF;"></i>
-                            <p class="mb-0" style="font-weight: 500;">Adresse :</p>
-                            <p class="mb-0">123 Rue du Garage</p>
-                            <p class="mb-0">Ville, Code Postal</p>
-                        </div>
-                        <div class="text-center">
-                            <i class="fas fa-phone me-2" style="font-size: 1.8rem; color: #007BFF;"></i>
-                            <p class="mb-0" style="font-weight: 500;">Téléphone :</p>
-                            <p class="mb-0">+33 1 23 45 67 89</p>
-                        </div>
-                    </div>
-                    <!-- Colonne droite pour les horaires -->
-                    <div class="col-md-6">
-                        <div class="text-end">
-                            <p class="mb-0 d-flex align-items-center">
-                                <i class="fas fa-clock me-3" style="font-size: 1.8rem; color: #007BFF;"></i>
-                                <strong style="font-size: 1.5rem;">Horaires :</strong>
-                            </p>
-                            <p class="mb-0">lun. 8:30 - 18:30</p>
-                            <p class="mb-0">mar. 8:30 - 19:30</p>
-                            <p class="mb-0">mer. 8:30 - 19:30</p>
-                            <p class="mb-0">jeu. 8:30 - 19:30</p>
-                            <p class="mb-0">ven. 8:30 - 19:30</p>
-                            <p class="mb-0">sam. 8:30 - 19:30</p>
-                            <p class="mb-0">dim. 8:30 - 19:30</p>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-    </div>
-</section>
-
-
-
-
-    <section class="py-5">
+    <section class="py-5 bg-light">
         <div class="container">
-            <h2 class="text-center mb-4">Nos Services</h2>
-            <div class="row">
-                <div class="col-md-4 d-flex justify-content-center">
-                    <div class="card service-card shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title text-light text-center fw-bold pb-3">Vente</h5>
-                            <p class="card-text">Découvrez notre sélection de véhicules neufs et d'occasion à des prix compétitifs.</p>
-                            <a href="#" class="btn btn-info">En savoir plus</a>
+            <div class="mb-5 text-center">
+                <h2 class="fw-bold position-relative d-inline-block px-4 py-2">Informations pratiques</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Encadrement pour téléphone et adresse, alignés horizontalement -->
+                    <div class="d-flex justify-content-center align-items-center mb-4 p-3 border rounded bg-white shadow-sm">
+                        <!-- Adresse -->
+                        <div class="d-flex align-items-center me-5">
+                            <i class="fas fa-map-marker-alt fs-3 iconeHome me-3"></i>
+                            <div>
+                                <p class="fw-bold mb-1">Adresse :</p>
+                                <a href="https://maps.app.goo.gl/iLuRreHa3TGJ7GVS9" class="lienMaps">123 Rue du Garage, Marchienne-au-pont, 6030</a>
+                            </div>
+                        </div>
+                        <!-- Téléphone -->
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-phone fs-3 iconeHome me-3"></i>
+                            <div>
+                                <p class="fw-bold mb-1">Téléphone :</p>
+                                <p class="mb-0 fw-bold">+33 1 23 45 67 89</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 d-flex justify-content-center">
-                    <div class="card service-card shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title text-light text-center fw-bold pb-3">Réparation & Entretien</h5>
-                            <p class="card-text">Nos mécaniciens experts sont là pour toutes vos réparations et révisions.</p>
-                            <a href="#" class="btn btn-info">En savoir plus</a>
+
+                    <!-- Encadrement pour les horaires -->
+                    <div class="p-3 border rounded bg-white shadow-sm text-center">
+                        <div class="d-flex align-items-center justify-content-center mb-3">
+                            <i class="fas fa-clock fs-3 iconeHome me-3"></i>
+                            <p class="fw-bold mb-0">Horaires d'ouverture :</p>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4 d-flex justify-content-center">
-                    <div class="card service-card shadow-sm">
-                        <div class="card-body">
-                            <h5 class="card-title text-light text-center fw-bold pb-3">Expertise</h5>
-                            <p class="card-text">Des conseils personnalisés pour vous aider à choisir le bon véhicule.</p>
-                            <a href="#" class="btn btn-info">En savoir plus</a>
-                        </div>
+                        <ul class="list-unstyled mb-0">
+                            <li>lun - sam : 8:30 - 19:00</li>
+                            <li>mercredi : 8:30 - 16:00</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -92,19 +55,56 @@
 
     <section class="py-5">
         <div class="container">
-            <h2 class="text-center mb-4">Qui sommes-nous ?</h2>
+            <h2 class="text-center fw-bold mb-4">Nos Services</h2>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <i class="fas fa-car fs-1 iconeHome mb-3"></i>
+                            <h5 class="card-title fw-bold">Vente</h5>
+                            <p class="card-text">Découvrez notre sélection de véhicules neufs et d'occasion à des prix compétitifs.</p>
+                            <a href="{{ path('voitures') }}" class="btn btn-info mt-2">En savoir plus</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <i class="fas fa-tools fs-1 iconeHome mb-3"></i>
+                            <h5 class="card-title fw-bold">Réparation & Entretien</h5>
+                            <p class="card-text">Nos mécaniciens experts sont là pour toutes vos réparations et révisions.</p>
+                            <a href="{{ path('voitures') }}" class="btn btn-info mt-2">En savoir plus</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body">
+                            <i class="fas fa-user-tie fs-1 iconeHome mb-3"></i>
+                            <h5 class="card-title fw-bold">Expertise</h5>
+                            <p class="card-text">Des conseils personnalisés pour vous aider à choisir le bon véhicule.</p>
+                            <a href="{{ path('voitures') }}" class="btn btn-info mt-2">En savoir plus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-light">
+        <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <h3>Votre Garage de Confiance</h3>
-                    <p>Chez Piazza Officina, nous mettons un point d'honneur à offrir un service de qualité et une expérience client inoubliable. Notre équipe de professionnels passionnés est à votre disposition pour répondre à tous vos besoins automobiles.</p>
-                    <ul>
-                        <li>Une équipe de professionnels qualifiés</li>
-                        <li>Des services personnalisés selon vos besoins</li>
-                        <li>Un engagement envers la satisfaction client</li>
+                    <h3 class="fw-bold">Qui sommes-nous ?</h3>
+                    <p class="mb-4">Chez Garage Durieux, nous mettons un point d'honneur à offrir un service de qualité et une expérience client inoubliable. Notre équipe de professionnels passionnés est à votre disposition pour répondre à tous vos besoins automobiles. Que vous soyez à la recherche d'un entretien, d'une réparation, ou de conseils personnalisés, nous avons la solution qui vous correspond.</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check-circle text-success me-2"></i> Une équipe de professionnels qualifiés</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i> Des services personnalisés selon vos besoins</li>
+                        <li><i class="fas fa-check-circle text-success me-2"></i> Un engagement envers la satisfaction client</li>
                     </ul>
                 </div>
                 <div class="col-md-6">
-                    <img src="{{ asset('public/uploads/garage_image.jpg') }}" alt="Notre garage" class="img-fluid rounded">
+                    <img src="{{ asset('uploads/garage.webp') }}" alt="Notre garage" class="img-fluid rounded shadow-sm imageGarage">
                 </div>
             </div>
         </div>

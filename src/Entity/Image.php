@@ -19,7 +19,7 @@ class Image
     private ?string $url = null;
 
     #[ORM\Column(length: 255)]
-    #[Assert\Length(min:10, max:255, minMessage:"Le titre doit faire plus de 10 caractères", maxMessage:"Le titre ne doit pas faire plus de 255 caractères")]
+    #[Assert\Length(min:3, max:255, minMessage:"Le titre doit faire plus de 3 caractères", maxMessage:"Le titre ne doit pas faire plus de 255 caractères")]
     private ?string $caption = null;
 
     #[ORM\ManyToOne(inversedBy: 'images')]

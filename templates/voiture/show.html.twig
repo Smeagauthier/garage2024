@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Détails de {{ voiture.marque }} {{ voiture.modele }}{% endblock %}
+{% block title %}Détails | {{ voiture.marque }} {{ voiture.modele }}{% endblock %}
 
 {% block body %}
     <header class="py-5 text-white">
         <div class="container">
-            <a href="{{ path('voitures') }}" class="btn btn-danger btn-sm position-absolute fw-bold">
+            <a href="{{ path('voitures') }}" class="btn btn-danger btn-sm position-absolute fw-bold" title="Retour">
                 <i class="fas fa-chevron-left"></i> Retour
             </a>
             <h1 class="display-4 text-center fw-bold">{{ voiture.marque }} {{ voiture.modele }}</h1>
@@ -16,108 +16,125 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <img src="{{ asset('uploads/' ~ voiture.coverImage) }}" class="img-fluid rounded-3 shadow-sm" alt="{{ voiture.marque }} {{ voiture.modele }}" style="width: 100%; height: 350px;">
+                    {# {{voiture.content | raw | nl2br}} #}
+                    <img src="{{ asset('uploads/' ~ voiture.coverImage) }}" class="img-fluid rounded-3 shadow-sm" alt="{{ voiture.marque }} {{ voiture.modele }}" style="width: 100%; height: 350px;object-fit: cover;">
                     
                     <!-- Carrousel d'images -->
                     <div id="carrouselImages" class="carousel slide mt-4" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="https://picsum.photos/id/237/200/100" class="d-block w-100 rounded-3" alt="Image 1">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://picsum.photos/id/238/200/100" class="d-block w-100 rounded-3" alt="Image 2">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://picsum.photos/id/239/200/100" class="d-block w-100 rounded-3" alt="Image 3">
-                            </div>
+                            {% for image in voiture.images %}
+                                <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                    <img src="{{image.url}}" class="d-block w-100" alt="image de {{voiture.marque}} {{voiture.modele}}">
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <h5>{{voiture.marque}}</h5>
+                                        <h5>{{voiture.modele}}</h5>
+                                        <p>{{image.caption}}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carrouselImages" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Précédent</span>
+                            <span class="visually-hidden" title="Précédent">Précédent</span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#carrouselImages" data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Suivant</span>
+                            <span class="visually-hidden" title="Suivant">Suivant</span>
                         </button>
                     </div>
                 </div>
                 <div class="col-md-6 bg-light p-4 shadow-sm rounded-3">
-                    <h2 class="text-uppercase mb-4">Fiche technique</h2>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="text-uppercase">Fiche technique</h2>
+                        <a href="{{ path('voiture_edit', { id: voiture.id }) }}" class="btn btn-warning text-white fw-bold" title="Modifier l'annonce de {{voiture.marque}} {{voiture.modele}}">
+                            <i class="fas fa-cog"></i>
+                        </a>
+                    </div>
 
                     <div class="row mb-3">
                         <div class="col-md-6" title="Nombre de kilomètres voiture">
-                            <label class="input-group">
+                            <label for="km" class="form-label fw-bold labelInfo">Kilométrage</label>
+                            <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-tachometer-alt"></i></span>
                                 <input type="text" class="form-control non-clickable" value="{{ voiture.km }} km" readonly>
-                            </label>
+                            </div>
                         </div>
                         <div class="col-md-6" title="Prix de la voiture">
-                            <label class="input-group">
+                            <label for="prix" class="form-label fw-bold labelInfo">Prix</label>
+                            <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-euro-sign"></i></span>
                                 <input type="text" class="form-control non-clickable" value="{{ voiture.prix }} €" readonly >
-                            </label>
+                            </div>
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col-md-6" title="Nombre de propriétaire de la voiture">
-                            <label class="input-group">
+                            <label for="nbProprietaire" class="form-label fw-bold labelInfo">Nombre de propriétaires</label>
+                            <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 <input type="text" class="form-control non-clickable" value="{{ voiture.nbProprietaire }} propriétaires précédents" readonly >
-                            </label>
+                            </div>
                         </div>
-                        <div class="col-md-6" title="Cylindre de la voiture">
-                            <label class="input-group">
+                        <div class="col-md-6" title="Nombre de cylindre de la voiture">
+                            <label for="cylindree" class="form-label fw-bold labelInfo">Nombre de cylindres</label>
+                            <div class="input-group">
                                 <span class="input-group-text"><i class="fa-solid fa-gear"></i></span>
                                 <input type="text" class="form-control non-clickable" value="{{ voiture.cylindree }} cm³" readonly>
-                            </label>
+                            </div>
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col-md-6" title="Puissance de la voiture">
-                            <label class="input-group">
+                            <label for="puissance" class="form-label fw-bold labelInfo">Puissance de la voiture</label>
+                            <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-bolt"></i></span>
                                 <input type="text" class="form-control non-clickable" value="{{ voiture.puissance }} ch" readonly>
-                            </label>
+                            </div>
                         </div>
                         <div class="col-md-6" title="Carburant de la voiture">
-                            <label class="input-group">
+                            <label for="carburant" class="form-label fw-bold labelInfo">Carburant</label>
+                            <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-gas-pump"></i></span>
                                 <input type="text" class="form-control non-clickable" value="{{ voiture.carburant }}" readonly>
-                            </label>
+                            </div>
                         </div>
                     </div>
 
                     <div class="row mb-3">
-                        <div class="col-md-6" title="Année de construction de la voiture">
-                            <label class="input-group">
+                        <div class="col-md-6" title="Année de mise en circulation de la voiture">
+                            <label for="annee" class="form-label fw-bold labelInfo">Année de mise en circulation</label>
+                            <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                                 <input type="text" class="form-control non-clickable" value="{{ voiture.annee }}" readonly>
-                            </label>
+                            </div>
                         </div>
                         <div class="col-md-6" title="Transmission de la voiture">
-                            <label class="input-group">
+                            <label for="transmission" class="form-label fw-bold labelInfo">Transmission</label>
+                            <div class="input-group">
                                 <span class="input-group-text"><i class="fa-solid fa-car"></i></span>
                                 <input type="text" class="form-control non-clickable" value="{{ voiture.transmission }}" readonly>
-                            </label>
+                            </div>
                         </div>
                     </div>
 
                     <div class="row mb-4">
                         <div class="col-md-12" title="Description détaillée de la voiture">
-                            <label class="input-group">
+                            <label for="description" class="form-label fw-bold labelInfo">Description</label>
+                            <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-file-alt"></i></span>
                                 <textarea class="form-control non-clickable" rows="3" readonly resize="none">{{ voiture.description }}</textarea>
-                            </label>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12" title="Autres options de la voiture">
-                            <label class="input-group">
+                            <label for="autresOptions" class="form-label fw-bold labelInfo">Autres options</label>
+                            <div class="input-group">
                                 <span class="input-group-text"><i class="fa-solid fa-circle-info"></i></span>
                                 <textarea class="form-control non-clickable" rows="3" readonly resize="none">{{ voiture.autresOptions }}</textarea>
-                            </label>
+                            </div>
                         </div>
                     </div>
                 </div>

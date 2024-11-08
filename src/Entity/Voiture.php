@@ -17,42 +17,54 @@ class Voiture
     private ?int $id = null;
     
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min:0, max:255, minMessage:"La marque doit faire plus de 0 caractères", maxMessage:"La marque ne doit pas faire plus de 255 caractères")]
     private ?string $marque = null;
     
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min:0, max:255, minMessage:"Le modèle doit faire plus de 0 caractère", maxMessage:"Le modèle ne doit pas faire plus de 255 caractères")]
     private ?string $modele = null;
     
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $coverImage = null;
     
     #[ORM\Column]
+    #[Assert\NotBlank(message: "Le champs kilomètrage ne peut pas être vide")]
     private ?int $km = null;
     
     #[ORM\Column]
+    #[Assert\NotBlank(message: "Le champs prix ne peut pas être vide")]
     private ?float $prix = null;
     
     #[ORM\Column]
+    #[Assert\NotBlank(message: "Le champs nombre de propriétaire ne peut pas être vide")]
     private ?int $nbProprietaire = null;
     
     #[ORM\Column]
-    private ?bool $cylindree = null;
+    #[Assert\NotBlank(message: "Le champs cylindrée ne peut pas être vide")]
+    private ?int $cylindree = null;
     
     #[ORM\Column]
+    #[Assert\NotBlank(message: "Le champs puissance ne peut pas être vide")]
     private ?int $puissance = null;
     
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le champs carburant ne peut pas être vide")]
     private ?string $carburant = null;
     
     #[ORM\Column]
+    #[Assert\NotBlank(message: "Le champs année de mise en circulation ne peut pas être vide")]
     private ?int $annee = null;
     
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Le champs transmission ne peut pas être vide")]
     private ?string $transmission = null;
     
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min:10, max:255, minMessage:"La description ne doit pas faire moins que 20 caractères", maxMessage:"La description ne doit pas faire plus de 255 caractères")]
     private ?string $description = null;
     
     #[ORM\Column(length: 255)]
+    #[Assert\Length(min:10, max:255, minMessage:"Le champs autres options ne doit pas faire moins que 10 caractères", maxMessage:"Le champs autres options ne doit pas faire plus de 255 caractères")]
     private ?string $autresOptions = null;
     
     /**
@@ -102,10 +114,9 @@ class Voiture
         return $this->coverImage;
     }
 
-    public function setCoverImage(string $coverImage): static
+    public function setCoverImage(?string $coverImage): self
     {
-        $this->coverImage = $coverImage;
-
+        $this->coverImage = $coverImage ; 
         return $this;
     }
     
@@ -135,13 +146,6 @@ class Voiture
         
         return $this;
     }
-    
-    // public function setImage(string $image): static
-    // {
-    //     $this->image = $image;
-        
-    //     return $this;
-    // }
     
     public function getKm(): ?int
     {
@@ -179,12 +183,12 @@ class Voiture
         return $this;
     }
     
-    public function isCylindree(): ?bool
+    public function isCylindree(): ?int
     {
         return $this->cylindree;
     }
     
-    public function setCylindree(bool $cylindree): static
+    public function setCylindree(int $cylindree): static
     {
         $this->cylindree = $cylindree;
         
