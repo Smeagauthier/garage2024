@@ -28,6 +28,8 @@ class VoitureController extends AbstractController
     public function index(VoitureRepository $repo): Response
     {
         $voitures = $repo->findAll();
+
+        //Méthode render pour afficher la page du template de manière dynamique en fonction des données passées
         return $this->render('voiture/index.html.twig', [
             'voitures' => $voitures,
         ]);
@@ -39,6 +41,7 @@ class VoitureController extends AbstractController
     {
         $voiture = $entityManager->getRepository(Voiture::class)->find($id);
         
+        // Vérifier si la voiture existe
         if (!$voiture) {
             throw $this->createNotFoundException('Voiture non trouvée');
         }
@@ -72,7 +75,7 @@ class VoitureController extends AbstractController
                 $manager->persist($image);
             }
             
-            // Récupérer l'image depuis le formulaire (obligé pour FileType)
+            // Récupérer l'image depuis le formulaire (obligé pour FileType), getData() renvoie un objet UploadedFile qui permet de récupérer les infos du fichier (nom, extension,...) et de pouvoir les modifier (ici on renomme l'image avec un nom unique pour éviter les conflits et on la déplace dans le dossier public/uploads)
             $imageFile = $form->get('coverImage')->getData();
             
             if (!$form->get('coverImage')->getData()) {
@@ -94,6 +97,7 @@ class VoitureController extends AbstractController
                         $newFilename
                     );
                 } catch (FileException $e) {
+
                     // Gérer l'erreur si le fichier ne peut pas être déplacé
                     throw new \Exception('Une erreur est survenue lors du téléchargement de l\'image.');
                 }
@@ -102,13 +106,10 @@ class VoitureController extends AbstractController
                 $voiture->setCoverImage($newFilename);
             }
             
-            // Persist et flush l'entité voiture
             $manager->persist($voiture); 
             $manager->flush();
             
-            // Message de succès et redirection
             $this->addFlash('success', 'Votre annonce a bien été créée !');
-            
             return $this->redirectToRoute('voiture_show', ['id' => $voiture->getId()]);
             
         }
@@ -134,19 +135,19 @@ class VoitureController extends AbstractController
     #[Route("voiture/{id}/edit", name:"voiture_edit")]
     public function edit(Request $request, EntityManagerInterface $manager, Voiture $voiture): Response
     {
-        // Stocker l'ancienne image
+        // Stocker l'ancienne image pour après décider s'il faut la supprimer ou non
         $ancienneImage = $voiture->getCoverImage();
         
-        // Créer le formulaire
         $form = $this->createForm(VoitureType::class, $voiture);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            // Récupérer le fichier d'image soumis
+
             $imageFile = $form->get('coverImage')->getData();
             
+            //Si une nouvelle image est téléchargée, on supprime l'ancienne image du répertoire
             if ($imageFile) {
-                // Si une nouvelle image est téléchargée, on supprime l'ancienne image du répertoire
+
                 if ($ancienneImage) {
                     $this->removeImage($ancienneImage);
                 }
@@ -155,7 +156,9 @@ class VoitureController extends AbstractController
                 $newFilename = uniqid().'.'.$imageFile->guessExtension();
                 $imageFile->move($this->getParameter('uploads_directory'), $newFilename);
                 $voiture->setCoverImage($newFilename);
+
             } else {
+
                 // Si aucune nouvelle image n'est soumise, on conserve l'ancienne
                 if ($ancienneImage) {
                     $voiture->setCoverImage($ancienneImage);
@@ -170,7 +173,6 @@ class VoitureController extends AbstractController
                 $manager->persist($image);
             }
             
-            // Persist et flush les changements
             $manager->persist($voiture);
             $manager->flush();
             
@@ -184,16 +186,15 @@ class VoitureController extends AbstractController
         ]);
     }
     
-    // Fonction pour supprimer l'ancienne image
+    // Fonction pour supprimer l'ancienne image du dossier uploads
     private function removeImage($imageFilename): void
     {
+        // Construit le chemin complet du fichier
         $imagePath = $this->getParameter('uploads_directory') . '/' . $imageFilename;
         
-        // Vérifie si le fichier existe avant de tenter de le supprimer
+        // Vérifie si le fichier existe avant de le supprimer
         if (file_exists($imagePath)) {
-            unlink($imagePath); // Supprime l'image du répertoire
+            unlink($imagePath); // Supprime l'image de uploads
         }
-    }
-    
-    
+    }   
 }

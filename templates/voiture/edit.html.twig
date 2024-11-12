@@ -25,6 +25,12 @@
             <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-car"></i></span>
                 {{ form_widget(myForm.marque, {'attr': {'class': 'form-control', 'placeholder': 'Marque'}}) }}
+                {{ form_errors(myForm.marque) }}
+                {% if myForm.marque.vars.errors|length > 0 %}
+                    <div class="form-errors">
+                        {{ form_errors(myForm.marque) }}
+                    </div>
+                {% endif %}
             </div>
         </div>
         <div class="col-md-6">
@@ -32,6 +38,11 @@
             <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-car-side"></i></span>
                 {{ form_widget(myForm.modele, {'attr': {'class': 'form-control', 'placeholder': 'Modèle'}}) }}
+                {% if myForm.modele.vars.errors|length > 0 %}
+                    <div class="form-errors">
+                        {{ form_errors(myForm.modele) }}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -42,6 +53,11 @@
             <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-tachometer-alt"></i></span>
                 {{ form_widget(myForm.km, {'attr': {'class': 'form-control', 'placeholder': 'Kilométrage', 'min': 0}}) }}
+                {% if myForm.km.vars.errors|length > 0 %}
+                    <div class="form-errors">
+                        {{ form_errors(myForm.km) }}
+                    </div>
+                {% endif %}
             </div>
         </div>
         <div class="col-md-6">
@@ -49,6 +65,11 @@
             <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-euro-sign"></i></span>
                 {{ form_widget(myForm.prix, {'attr': {'class': 'form-control', 'placeholder': 'Prix', 'min': 0}}) }}
+                {% if myForm.prix.vars.errors|length > 0 %}
+                    <div class="form-errors">
+                        {{ form_errors(myForm.prix) }}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -59,6 +80,11 @@
             <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-user"></i></span>
                 {{ form_widget(myForm.nbProprietaire, {'attr': {'class': 'form-control', 'placeholder': 'Nombre de propriétaires', 'min': 0}}) }}
+                {% if myForm.nbProprietaire.vars.errors|length > 0 %}
+                    <div class="form-errors">
+                        {{ form_errors(myForm.nbProprietaire) }}
+                    </div>
+                {% endif %}
             </div>
         </div>
         <div class="col-md-6">
@@ -66,6 +92,11 @@
             <div class="input-group">
                 <span class="input-group-text"><i class="fa-solid fa-gear"></i></span>
                 {{ form_widget(myForm.cylindree, {'attr': {'class': 'form-control', 'placeholder': 'Cylindrée', 'min': 0}}) }}
+                {% if myForm.cylindree.vars.errors|length > 0 %}
+                    <div class="form-errors">
+                        {{ form_errors(myForm.cylindree) }}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -76,6 +107,11 @@
             <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-bolt"></i></span>
                 {{ form_widget(myForm.puissance, {'attr': {'class': 'form-control', 'placeholder': 'Puissance', 'min': 0}}) }}
+                {% if myForm.puissance.vars.errors|length > 0 %}
+                    <div class="form-errors">
+                        {{ form_errors(myForm.puissance) }}
+                    </div>
+                {% endif %}
             </div>
         </div>
         <div class="col-md-6">
@@ -83,6 +119,11 @@
             <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-gas-pump"></i></span>
                 {{ form_widget(myForm.carburant, {'attr': {'class': 'form-control', 'placeholder': 'Carburant'}}) }}
+                {% if myForm.carburant.vars.errors|length > 0 %}
+                    <div class="form-errors">
+                        {{ form_errors(myForm.carburant) }}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -93,6 +134,11 @@
             <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
                 {{ form_widget(myForm.annee, {'attr': {'class': 'form-control', 'placeholder': 'Année', 'min': 1950, 'max': 'now'|date('Y')}}) }}
+                {% if myForm.annee.vars.errors|length > 0 %}
+                    <div class="form-errors">
+                        {{ form_errors(myForm.annee) }}
+                    </div>
+                {% endif %}
             </div>
         </div>
         <div class="col-md-6">
@@ -100,6 +146,11 @@
             <div class="input-group">
                 <span class="input-group-text"><i class="fa-solid fa-cogs"></i></span>
                 {{ form_widget(myForm.transmission, {'attr': {'class': 'form-control', 'placeholder': 'Transmission'}}) }}
+                {% if myForm.transmission.vars.errors|length > 0 %}
+                    <div class="form-errors">
+                        {{ form_errors(myForm.transmission) }}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -110,6 +161,11 @@
             <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-image"></i></span>
                 {{ form_widget(myForm.coverImage, {'attr': {'class': 'form-control', 'placeholder': 'Téléchargez l\'image de couverture'}}) }}
+                {% if myForm.coverImage.vars.errors|length > 0 %}
+                    <div class="form-errors">
+                        {{ form_errors(myForm.coverImage) }}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -120,6 +176,11 @@
             <div class="input-group">
                 <span class="input-group-text"><i class="fas fa-info-circle"></i></span>
                 {{ form_widget(myForm.description, {'attr': {'class': 'form-control', 'rows': '3', 'placeholder': 'Description'}}) }}
+                {% if myForm.description.vars.errors|length > 0 %}
+                    <div class="form-errors">
+                        {{ form_errors(myForm.description) }}
+                    </div>
+                {% endif %}   
             </div>
         </div>
     </div>
@@ -130,6 +191,11 @@
             <div class="input-group">
                 <span class="input-group-text"><i class="fa-solid fa-tools"></i></span>
                 {{ form_widget(myForm.autresOptions, {'attr': {'class': 'form-control', 'rows': '3', 'placeholder': 'Autres options'}}) }}
+                {% if myForm.autresOptions.vars.errors|length > 0 %}
+                    <div class="form-errors">
+                        {{ form_errors(myForm.autresOptions) }}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>

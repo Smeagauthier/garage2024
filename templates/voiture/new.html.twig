@@ -5,143 +5,207 @@
 
 {% block body %}
 
-<header class="py-4 text-white text-center d-flex align-items-center mb-3">
+    <header class="py-4 text-white text-center d-flex align-items-center mb-3">
+        <div class="container">
+            <h1 class="display-4 fw-bold pb-4">Ajout d'un nouveau véhicule</h1>
+        </div>
+    </header>
+
     <div class="container">
-        <h1 class="display-4 fw-bold pb-4">Ajout d'un nouveau véhicule</h1>
+
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endfor %}
+
+        {{ form_start(myForm) }}
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="marque" class="form-label fw-bold labelInfo">Marque</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-car"></i></span>
+                    {{ form_widget(myForm.marque, {'attr': {'class': 'form-control', 'placeholder': 'Marque'}}) }}
+                    {% if myForm.marque.vars.errors|length > 0 %}
+                        <div class="form-errors">
+                            {{ form_errors(myForm.marque) }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="modele" class="form-label fw-bold labelInfo">Modèle</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-car-side"></i></span>
+                    {{ form_widget(myForm.modele, {'attr': {'class': 'form-control', 'placeholder': 'Modèle'}}) }}
+                    {% if myForm.modele.vars.errors|length > 0 %}
+                        <div class="form-errors">
+                            {{ form_errors(myForm.modele) }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="km" class="form-label fw-bold labelInfo">Kilométrage</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-tachometer-alt"></i></span>
+                    {{ form_widget(myForm.km, {'attr': {'class': 'form-control', 'placeholder': 'Kilométrage'}}) }}
+                    {% if myForm.km.vars.errors|length > 0 %}
+                        <div class="form-errors">
+                            {{ form_errors(myForm.km) }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="prix" class="form-label fw-bold labelInfo">Prix</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-euro-sign"></i></span>
+                    {{ form_widget(myForm.prix, {'attr': {'class': 'form-control', 'placeholder': 'Prix'}}) }}
+                    {% if myForm.prix.vars.errors|length > 0 %}
+                        <div class="form-errors">
+                            {{ form_errors(myForm.prix) }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="nbProprietaire" class="form-label fw-bold labelInfo">Nombre de propriétaires</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    {{ form_widget(myForm.nbProprietaire, {'attr': {'class': 'form-control', 'placeholder': 'Nombre de propriétaires'}}) }}
+                    {% if myForm.nbProprietaire.vars.errors|length > 0 %}
+                        <div class="form-errors">
+                            {{ form_errors(myForm.nbProprietaire) }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="cylindree" class="form-label fw-bold labelInfo">Nombre de cylindres</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-gear"></i></span>
+                    {{ form_widget(myForm.cylindree, {'attr': {'class': 'form-control', 'placeholder': 'Cylindrée'}}) }}
+                    {% if myForm.cylindree.vars.errors|length > 0 %}
+                        <div class="form-errors">
+                            {{ form_errors(myForm.cylindree) }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="puissance" class="form-label fw-bold labelInfo">Puissance</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-bolt"></i></span>
+                    {{ form_widget(myForm.puissance, {'attr': {'class': 'form-control', 'placeholder': 'Puissance'}}) }}
+                    {% if myForm.puissance.vars.errors|length > 0 %}
+                        <div class="form-errors">
+                            {{ form_errors(myForm.puissance) }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="carburant" class="form-label fw-bold labelInfo">Carburant</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-gas-pump"></i></span>
+                    {{ form_widget(myForm.carburant, {'attr': {'class': 'form-control', 'placeholder': 'Carburant'}}) }}
+                    {% if myForm.carburant.vars.errors|length > 0 %}
+                        <div class="form-errors">
+                            {{ form_errors(myForm.carburant) }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="annee" class="form-label fw-bold labelInfo">Année de mise en circulation</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                    {{ form_widget(myForm.annee, {'attr': {'class': 'form-control', 'placeholder': 'Année', 'min': 1950, 'max': 'now'|date('Y')}}) }}
+                    {% if myForm.annee.vars.errors|length > 0 %}
+                        <div class="form-errors">
+                            {{ form_errors(myForm.annee) }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="transmission" class="form-label fw-bold labelInfo">Transmission</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-cogs"></i></span>
+                    {{ form_widget(myForm.transmission, {'attr': {'class': 'form-control', 'placeholder': 'Transmission'}}) }}
+                    {% if myForm.transmission.vars.errors|length > 0 %}
+                        <div class="form-errors">
+                            {{ form_errors(myForm.transmission) }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label for="image" class="form-label fw-bold labelInfo">Image de couverture</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-image"></i></span>
+                    {{ form_widget(myForm.coverImage, {'attr': {'class': 'form-control', 'placeholder': 'Téléchargez l\'image de couverture'}}) }}
+                    {% if myForm.coverImage.vars.errors|length > 0 %}
+                        <div class="form-errors">
+                            {{ form_errors(myForm.coverImage) }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label for="description" class="form-label fw-bold labelInfo">Description</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-info-circle"></i></span>
+                    {{ form_widget(myForm.description, {'attr': {'class': 'form-control', 'rows': '3', 'placeholder': 'Description'}}) }}
+                    {% if myForm.description.vars.errors|length > 0 %}
+                        <div class="form-errors">
+                            {{ form_errors(myForm.description) }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label for="autresoptions" class="form-label fw-bold labelInfo">Autres options</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-tools"></i></span>
+                    {{ form_widget(myForm.autresOptions, {'attr': {'class': 'form-control', 'rows': '3', 'placeholder': 'Autres options'}}) }}
+                    {% if myForm.autresOptions.vars.errors|length > 0 %}
+                        <div class="form-errors">
+                            {{ form_errors(myForm.autresOptions) }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success mt-3 btn-lg btn-block shadow-lg rounded-pill bt-creer" title="Créer une annonce">
+            <i class="fas fa-check-circle"></i> Créer une annonce
+        </button>
+
+        {{ form_end(myForm) }}
+
     </div>
-</header>
-
-<div class="container">
-
-    {% for message in app.flashes('error') %}
-        <div class="alert alert-danger">{{ message }}</div>
-    {% endfor %}
-
-    {{ form_start(myForm) }}
-
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <label for="marque" class="form-label fw-bold labelInfo">Marque</label>
-            <div class="input-group">
-                <span class="input-group-text"><i class="fas fa-car"></i></span>
-                {{ form_widget(myForm.marque, {'attr': {'class': 'form-control', 'placeholder': 'Marque'}}) }}
-            </div>
-        </div>
-        <div class="col-md-6">
-            <label for="modele" class="form-label fw-bold labelInfo">Modèle</label>
-            <div class="input-group">
-                <span class="input-group-text"><i class="fas fa-car-side"></i></span>
-                {{ form_widget(myForm.modele, {'attr': {'class': 'form-control', 'placeholder': 'Modèle'}}) }}
-            </div>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <label for="km" class="form-label fw-bold labelInfo">Kilométrage</label>
-            <div class="input-group">
-                <span class="input-group-text"><i class="fas fa-tachometer-alt"></i></span>
-                {{ form_widget(myForm.km, {'attr': {'class': 'form-control', 'placeholder': 'Kilométrage'}}) }}
-            </div>
-        </div>
-        <div class="col-md-6">
-            <label for="prix" class="form-label fw-bold labelInfo">Prix</label>
-            <div class="input-group">
-                <span class="input-group-text"><i class="fas fa-euro-sign"></i></span>
-                {{ form_widget(myForm.prix, {'attr': {'class': 'form-control', 'placeholder': 'Prix'}}) }}
-            </div>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <label for="nbProprietaire" class="form-label fw-bold labelInfo">Nombre de propriétaires</label>
-            <div class="input-group">
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
-                {{ form_widget(myForm.nbProprietaire, {'attr': {'class': 'form-control', 'placeholder': 'Nombre de propriétaires'}}) }}
-            </div>
-        </div>
-        <div class="col-md-6">
-            <label for="cylindree" class="form-label fw-bold labelInfo">Nombre de cylindres</label>
-            <div class="input-group">
-                <span class="input-group-text"><i class="fa-solid fa-gear"></i></span>
-                {{ form_widget(myForm.cylindree, {'attr': {'class': 'form-control', 'placeholder': 'Cylindrée'}}) }}
-            </div>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <label for="puissance" class="form-label fw-bold labelInfo">Puissance</label>
-            <div class="input-group">
-                <span class="input-group-text"><i class="fas fa-bolt"></i></span>
-                {{ form_widget(myForm.puissance, {'attr': {'class': 'form-control', 'placeholder': 'Puissance'}}) }}
-            </div>
-        </div>
-        <div class="col-md-6">
-            <label for="carburant" class="form-label fw-bold labelInfo">Carburant</label>
-            <div class="input-group">
-                <span class="input-group-text"><i class="fas fa-gas-pump"></i></span>
-                {{ form_widget(myForm.carburant, {'attr': {'class': 'form-control', 'placeholder': 'Carburant'}}) }}
-            </div>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-md-6">
-            <label for="annee" class="form-label fw-bold labelInfo">Année de mise en circulation</label>
-            <div class="input-group">
-                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
-                {{ form_widget(myForm.annee, {'attr': {'class': 'form-control', 'placeholder': 'Année'}}) }}
-            </div>
-        </div>
-        <div class="col-md-6">
-            <label for="transmission" class="form-label fw-bold labelInfo">Transmission</label>
-            <div class="input-group">
-                <span class="input-group-text"><i class="fa-solid fa-cogs"></i></span>
-                {{ form_widget(myForm.transmission, {'attr': {'class': 'form-control', 'placeholder': 'Transmission'}}) }}
-            </div>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-md-12">
-            <label for="image" class="form-label fw-bold labelInfo">Image de couverture</label>
-            <div class="input-group">
-                <span class="input-group-text"><i class="fas fa-image"></i></span>
-                {{ form_widget(myForm.coverImage, {'attr': {'class': 'form-control', 'placeholder': 'Téléchargez l\'image de couverture'}}) }}
-            </div>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-md-12">
-            <label for="description" class="form-label fw-bold labelInfo">Description</label>
-            <div class="input-group">
-                <span class="input-group-text"><i class="fas fa-info-circle"></i></span>
-                {{ form_widget(myForm.description, {'attr': {'class': 'form-control', 'rows': '3', 'placeholder': 'Description'}}) }}
-            </div>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-md-12">
-            <label for="autresoptions" class="form-label fw-bold labelInfo">Autres options</label>
-            <div class="input-group">
-                <span class="input-group-text"><i class="fa-solid fa-tools"></i></span>
-                {{ form_widget(myForm.autresOptions, {'attr': {'class': 'form-control', 'rows': '3', 'placeholder': 'Autres options'}}) }}
-            </div>
-        </div>
-    </div>
-
-    <button type="submit" class="btn btn-success mt-3 btn-lg btn-block shadow-lg rounded-pill bt-creer" title="Créer une annonce">
-        <i class="fas fa-check-circle"></i> Créer une annonce
-    </button>
-
-    {{ form_end(myForm) }}
-
-</div>
-
 {% endblock %}
 
 {% block javascripts %}

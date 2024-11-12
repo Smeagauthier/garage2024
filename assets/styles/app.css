@@ -214,3 +214,30 @@ footer {
     height: 60%;
     object-fit: cover;
 }
+
+.form-errors {
+    color: black; 
+    font-weight: 700;
+    font-size: 12px;  
+    background-color: rgb(190, 130, 130);
+    border: 2px solid red;
+    border-radius: 5px;
+    margin: 0 auto;
+    padding: 5px 10px;  
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    width: 100%;  
+    max-width: 100%;  
+    box-sizing: border-box;  
+}
+
+.form-errors ul {
+    padding-top: 3px;  
+    margin: 0;  
+}
+
+.form-errors li {
+    list-style-type: none;
+    margin: 0;  
+}

@@ -30,7 +30,7 @@ class VoitureType extends ApplicationType
             'label' => "Image de couverture (fichier JPG ou PNG)",
             'required' => false,
             'mapped' => true, 
-            'data_class' => null, // Pour ne pas avoir le formulaire de l'entité Image
+            'data_class' => null, // Pour que le champ ne soit pas associé à une classe particulière (traité séparément comme un string sinon ca doit être un type FileType) --> obligé
             ])
         ->add('km', IntegerType::class, $this->getConfiguration("Kilométrage", "Entrez le kilométrage"))
         ->add('prix', MoneyType::class, [
@@ -49,30 +49,30 @@ class VoitureType extends ApplicationType
             'placeholder' => 'Sélectionnez un type de carburant',
             'label' => 'Carburant',
             ])
-            ->add('annee', IntegerType::class, $this->getConfiguration("Année", "Entrez l'année de fabrication"))
-            ->add('transmission', ChoiceType::class, [
-                'choices' => [
-                    'Manuelle' => 'Manuelle',
-                    'Automatique' => 'Automatique',
-                    'Semi-Automatique' => 'Semi-automatique',
-                ],
-                'placeholder' => 'Sélectionnez une transmission',
-                'label' => 'Transmission',
-                ])
-                ->add('description', TextareaType::class, $this->getConfiguration("Description", "Donnez une description"))
-                ->add('autresOptions', TextareaType::class, $this->getConfiguration("Autres options", "Ajoutez des options supplémentaires"))
-                ->add('images',CollectionType::class,[
-                    'entry_type' => ImageType::class,
-                    'allow_add' => true, // permet d'ajouter des éléments et surtout avoir data_prototype
-                    'allow_delete' => true
-                    ])
-                    ;
-                }
-                
-                public function configureOptions(OptionsResolver $resolver): void
-                {
-                    $resolver->setDefaults([
-                        'data_class' => Voiture::class,
-                    ]);
-                }
-            }
+        ->add('annee', IntegerType::class, $this->getConfiguration("Année", "Entrez l'année de fabrication"))
+        ->add('transmission', ChoiceType::class, [
+            'choices' => [
+                'Manuelle' => 'Manuelle',
+                'Automatique' => 'Automatique',
+                'Semi-Automatique' => 'Semi-automatique',
+            ],
+            'placeholder' => 'Sélectionnez une transmission',
+            'label' => 'Transmission',
+            ])
+        ->add('description', TextareaType::class, $this->getConfiguration("Description", "Donnez une description"))
+        ->add('autresOptions', TextareaType::class, $this->getConfiguration("Autres options", "Ajoutez des options supplémentaires"))
+        ->add('images',CollectionType::class,[
+            'entry_type' => ImageType::class,
+            'allow_add' => true, // permet d'ajouter des éléments et surtout avoir data_prototype (= modèle html qui permet d'ajouter des éléments à une collection dans un formulaire (ici images))
+            'allow_delete' => true
+            ])
+        ;
+    }
+            
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => Voiture::class,
+        ]);
+    }
+}

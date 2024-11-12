@@ -29,22 +29,27 @@ class Voiture
     
     #[ORM\Column]
     #[Assert\NotBlank(message: "Le champs kilomètrage ne peut pas être vide")]
+    #[Assert\Positive(message: "Le kilométrage doit être un nombre positif.")]
     private ?int $km = null;
     
     #[ORM\Column]
     #[Assert\NotBlank(message: "Le champs prix ne peut pas être vide")]
+    #[Assert\Positive(message: "Le prix doit être un nombre positif.")]
     private ?float $prix = null;
     
     #[ORM\Column]
     #[Assert\NotBlank(message: "Le champs nombre de propriétaire ne peut pas être vide")]
+    #[Assert\Positive(message: "Le nombre de propriétaire précédent doit être un nombre positif.")]
     private ?int $nbProprietaire = null;
     
     #[ORM\Column]
     #[Assert\NotBlank(message: "Le champs cylindrée ne peut pas être vide")]
+    #[Assert\Positive(message: "Le nombre de cylindre doit être un nombre positif.")]
     private ?int $cylindree = null;
     
     #[ORM\Column]
     #[Assert\NotBlank(message: "Le champs puissance ne peut pas être vide")]
+    #[Assert\Positive(message: "La puissance doit être un nombre positif.")]
     private ?int $puissance = null;
     
     #[ORM\Column(length: 255)]
@@ -53,6 +58,13 @@ class Voiture
     
     #[ORM\Column]
     #[Assert\NotBlank(message: "Le champs année de mise en circulation ne peut pas être vide")]
+    #[Assert\Positive(message: "L'année de mise en circulation doit être un nombre positif.")]
+    // #[Assert\Range(
+    //     min: 1900,
+    //     max: date('Y'),
+    //     minMessage: "L'année de mise en circulation doit être supérieure ou égale à 1900",
+    //     maxMessage: "L'année de mise en circulation ne peut pas être supérieure à l'année en cours"
+    // )] //Pas compatible avec annee = null
     private ?int $annee = null;
     
     #[ORM\Column(length: 255)]
@@ -138,7 +150,6 @@ class Voiture
     public function removeImage(Image $image): static
     {
         if ($this->images->removeElement($image)) {
-            // Set the owning side to null (unless already changed)
             if ($image->getVoiture() === $this) {
                 $image->setVoiture(null);
             }
