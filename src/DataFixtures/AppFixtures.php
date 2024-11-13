@@ -12,7 +12,6 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');  
-        $faker = Factory::create();
 
         for ($i = 0; $i < 10; $i++) {
             $voiture = new Voiture();
@@ -25,7 +24,7 @@ class AppFixtures extends Fixture
             $voiture->setCylindree($faker->numberBetween(1000, 5000)); 
             $voiture->setPuissance($faker->numberBetween(50, 400)); 
             $voiture->setCarburant($faker->randomElement(['Essence', 'Diesel', 'Électrique', 'Hybride']));
-            $voiture->setAnnee($faker->year()); 
+            $voiture->setAnnee($faker->numberBetween(1950, 2024));
             $voiture->setTransmission($faker->randomElement(['Manuelle', 'Automatique'])); 
             $voiture->setDescription($faker->paragraph()); 
             $voiture->setAutresOptions($faker->sentence()); 
