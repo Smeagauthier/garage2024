@@ -24,6 +24,15 @@ class VoitureController extends AbstractController
         $this->entityManager = $entityManager;
     }
     
+    /**
+     * Affiche la liste des voitures.
+     *
+     * Cette fonction récupère toutes les voitures depuis le repository et les affiche
+     * sur la page d'index correspondante.
+     *
+     * @param VoitureRepository $repo Le repository des voitures.
+     * @return Response La réponse contenant la vue de la page d'index avec les voitures.
+     */
     #[Route('/voitures', name: 'voitures')]
     public function index(VoitureRepository $repo): Response
     {
@@ -36,6 +45,16 @@ class VoitureController extends AbstractController
         
     }
     
+    /**
+     * Affiche les détails d'une voiture spécifique.
+     *
+     * Cette fonction permet d'afficher les détails d'une voiture en fonction de son identifiant (id).
+     * Si la voiture n'est pas trouvée, une exception est levée.
+     *
+     * @param int $id L'identifiant de la voiture à afficher.
+     * @param EntityManagerInterface $entityManager Le gestionnaire d'entités pour récupérer la voiture.
+     * @return Response La réponse contenant la vue de la page de détails de la voiture.
+     */
     #[Route("/voiture/{id}", name :"voiture_show")]
     public function show($id, EntityManagerInterface $entityManager): Response
     {

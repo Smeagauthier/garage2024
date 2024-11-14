@@ -30,7 +30,7 @@ class VoitureType extends ApplicationType
             'label' => "Image de couverture (fichier JPG ou PNG)",
             'required' => false,
             'mapped' => true, 
-            'data_class' => null, // Pour que le champ ne soit pas associé à une classe particulière (traité séparément comme un string sinon ca doit être un type FileType) --> obligé
+            'data_class' => null, // Pour que le champ ne soit pas associé à une classe particulière (traité séparément comme un string sinon ca doit être un type FileType) --> obligé car Symfony attend un objet complet, et moi je ne veux que le chemin d'accès en string
             ])
         ->add('km', IntegerType::class, $this->getConfiguration("Kilométrage", "Entrez le kilométrage"))
         ->add('prix', MoneyType::class, [
